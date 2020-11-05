@@ -1,9 +1,7 @@
-# test_task
+# color_changer
+  The background color changes to a random one every time you click anywhere at the screen.
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
 
