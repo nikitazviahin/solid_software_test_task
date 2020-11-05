@@ -16,17 +16,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+//we use StatefulWidget as the background will change after every tap
 class CustomTile extends StatefulWidget {
   @override
   CustomTileState createState() => CustomTileState();
 }
 
 class CustomTileState extends State<CustomTile> {
+  //getting a random color
   Color color;
+  Color colorGenerator() {
+    //we just take random floating value between 0.0 and 1.0, and transform it to integer and then to Color value
+    return Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+  }
+
+  //flutter calls this object once every time State object is created
   @override
   void initState() {
     super.initState();
-    color = Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+    color = colorGenerator();
   }
 
   @override
@@ -36,6 +44,7 @@ class CustomTileState extends State<CustomTile> {
       color: color,
       child: InkWell(
         
+        //the Container with text and some styles for it
         child: Container(
           child: Center(
             child: Container(
@@ -55,9 +64,10 @@ class CustomTileState extends State<CustomTile> {
           )
         ),
 
+        //user taps handler, we use colorGenerator() we created earlier to change background here
         onTap: () {
           setState(() {
-            color = Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
+            color = colorGenerator();
           });
         }
 
